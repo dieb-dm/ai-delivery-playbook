@@ -12,13 +12,17 @@
         .status { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: bold; }
         .understand { background-color: #d4edda; color: #155724; }
         .configure { background-color: #fff3cd; color: #856404; }
-        pre { background: #f4f4f4; padding: 10px; border-left: 3px solid #0066cc; font-family: monospace; overflow-x: auto; }
+        pre { background: #f4f4f4; padding: 10px; border-left: 3px solid #0066cc; font-family: monospace; overflow-x: auto; white-space: pre-wrap; }
     </style>
 </head>
 <body>
 
     <h1>AI Delivery Playbook</h1>
     <p><em>A living document tracking my execution and strategy as an AI Delivery Leader.</em></p>
+
+    <hr>
+
+    <!-- ARCHIVE: THE INCEPTION CHARTER -->
     <details style="background: #f8f9fa; border: 1px solid #ddd; padding: 15px; border-radius: 5px; margin: 20px 0;">
         <summary style="font-weight: bold; cursor: pointer; color: #555;">📁 View Original Project Inception Prompt (How It Started)</summary>
         <div style="margin-top: 15px; font-size: 14px; border-top: 1px solid #eee; padding-top: 15px;">
@@ -28,8 +32,7 @@
         </div>
     </details>
 
-    <hr>
-
+    <!-- MISSION 1 -->
     <h2>Concept 1: Hosted LLM APIs vs. Self-Hosted Open-Source Models</h2>
     <p><strong>Status:</strong> <span class="status understand">🟢 Understand the concept</span></p>
     
@@ -39,58 +42,66 @@
     <h3>Why care as a DM?</h3>
     <p>APIs offer rapid time-to-market but carry variable Opex costs and external data privacy risks. Open-Source requires high upfront Capex and cloud expertise but guarantees data security and predictable infrastructure pricing.</p>
 
-    <h3>Questions to Ask</h3>
-    <ul>
-        <li>What is our projected user volume, and where is the tipping point where hosting our own model becomes cheaper than API fees?</li>
-        <li>Does the client's compliance policy allow sending data to a third-party API?</li>
-    </ul>
 
-    <h3>Simple Analogy</h3>
-    <p><strong>APIs = Uber:</strong> Quick, no maintenance, but expensive if run 24/7. <br><strong>Open Source = Owning commercial vans:</strong> High upfront cost and requires your own mechanics, but cheaper for heavy, constant usage.</p>
-
-
+    <!-- MISSION 2 -->
     <h2>Concept 2: Version-Controlled Documentation (Docs-as-Code)</h2>
     <p><strong>Status:</strong> <span class="status configure">🟡 Know how to configure or use it</span></p>
     
     <h3>What is it?</h3>
     <p>Writing technical and delivery documentation in lightweight formats (like Markdown/HTML) and managing it inside a Git repository alongside the codebase, utilizing automation to publish it live.</p>
 
-    <h3>Why care as a DM?</h3>
-    <p>Eliminates document fragmentation, builds a permanent audit trail of project decisions, and ensures the delivery playbook sits exactly where the engineering team works.</p>
 
-
+    <!-- MISSION 3 -->
     <h2>Concept 3: AI Agent Team Topology & Roles</h2>
     <p><strong>Status:</strong> <span class="status understand">🟢 Understand the concept</span></p>
     
     <h3>What is it?</h3>
-    <p>The specialized staffing structure required to scale AI applications beyond basic software development. It introduces specific roles focused on cognitive architecture, data fuel, and non-deterministic testing.</p>
-
-    <h3>Why care as a DM?</h3>
-    <p>Staffing a modern AI project with a generic software engineering mix creates delivery bottlenecks. You must explicitly source profiles that handle data pipeline engineering and automated model evaluation.</p>
-
-    <h3>The Core Profiles</h3>
-    <ul>
-        <li><strong>AI Architect:</strong> Designs the systemic blueprint, foundation, and core framework.</li>
-        <li><strong>AI Engineer:</strong> Builds individual agent use cases and orchestrates logical steps.</li>
-        <li><strong>Data Engineer:</strong> Prepares, vectors, and securely routes internal enterprise data (RAG).</li>
-        <li><strong>AI QA/Evaluation Engineer:</strong> Builds regression testing workflows to monitor agent accuracy.</li>
-    </ul>
+    <p>The specialized staffing structure required to scale AI applications beyond basic software development, introducing explicit profiles for cognitive workflows, data engineering (RAG), and non-deterministic testing.</p>
 
 
+    <!-- MISSION 4 -->
     <h2>Concept 4: Agent Orchestration Frameworks (LangGraph)</h2>
     <p><strong>Status:</strong> <span class="status understand">🟢 Understand the concept</span></p>
     
     <h3>What is it?</h3>
-    <p>A software framework that provides a standardized structure for mapping out an agent's complex multi-step reasoning processes, actions, evaluations, and logic loops.</p>
+    <p>A software framework providing a standardized structure for mapping out an agent's complex multi-step reasoning processes, actions, evaluations, and logic loops.</p>
+
+
+    <!-- MISSION 5 (NEW) -->
+    <h2>Concept 5: The 3-Tier Enterprise AI Architecture</h2>
+    <p><strong>Status:</strong> <span class="status understand">🟢 Understand the concept</span></p>
+    
+    <h3>What is it?</h3>
+    <p>A structural classification framework inside a Microsoft/Azure corporate environment that categorizes AI solutions into three tiers based on process complexity, data scale, and deployment governance[cite: 2, 3].</p>
+    <ul>
+        <li><strong>Tier A (Agent Builder):</strong> Fast, built-in, low-friction bots running out of the box in M365 Copilot, using localized text files on SharePoint[cite: 1, 3].</li>
+        <li><strong>Tier B (Copilot Studio):</strong> Fully managed workflow applications using Power Automate, proactive alerts, multi-step routing, and strict environment deployment pipes (ALM)[cite: 2, 3].</li>
+        <li><strong>Tier C (Azure AI Foundry):</strong> High-capacity data services leveraging Azure OpenAI, AI Search, and Document Intelligence (OCR) to ingest heavy datasets or complex layouts[cite: 2, 3].</li>
+    </ul>
 
     <h3>Why care as a DM?</h3>
-    <p>Without an orchestration framework, developers write bespoke, messy "if/else" code. While it might work for 1 or 2 use cases, it creates massive technical debt and will completely stall a project trying to scale to 20+ use cases.</p>
+    <p>It directly governs how you open roles and triage features[cite: 2]. Tier A requires low effort, Tier B requires specific Power Platform/ALM engineering capabilities[cite: 2, 3], and Tier C demands data engineers and larger consumption budgets[cite: 1, 2]. Skipping this filter causes major delays when low-tier systems fail to handle high-tier data loads[cite: 1, 3].</p>
 
-    <h3>Delivery Takeaway (The Reasoning Loop)</h3>
-    <p>The framework acts like a programmatic workflow where the agent executes an action, evaluates the output against business rules, and dynamically decides whether to proceed to the next step or deliver the final response to the user.</p>
+    <h3>Questions to Ask during Use-Case Triage</h3>
+    <ul>
+        <li><em>"Of the 18 remaining PayUK use cases, how many pass the Tier C filter (requiring deep table parsing or documents over 300 pages) versus basic text search?"</em>[cite: 3]</li>
+        <li><em>"Have we requested the Copilot Studio development environments from the client's tenant administrators, or are we gated by platform governance approvals?"</em>[cite: 2, 5]</li>
+    </ul>
 
     <h3>Simple Analogy</h3>
-    <p>Building 20 custom lego sets without a framework is like dumping loose bricks on the floor with no manuals. Using a framework is like giving every developer the exact same base grid plate—the designs can be unique, but the foundation is uniform and predictable.</p>
+    <p><strong>Tier A (Agent Builder) = A breakroom bulletin board:</strong> Free, immediate, great for pinning up reference documents, but it cannot actively route packages or notify people[cite: 1, 5].<br>
+    <strong>Tier B (Copilot Studio) = An automated mail room:</strong> Actively sorts packages, tracks delivery signatures, and dynamically sends reminders[cite: 2, 3].<br>
+    <strong>Tier C (Azure AI Foundry) = An industrial shipping hub:</strong> Uses forklifts, processes complex custom cargo manifests, and handles massive commercial freight[cite: 2, 3].</p>
+
+    <h3>Simple Diagram</h3>
+    <pre>
+[20+ PayUK Use Cases Pipeline]
+               │
+               ▼ Passing through the Architecture Filter...
+               ├─► Clean Text Only?  ──► TIER A (M365 Agent Builder)  ──► Low Cost / Fast Launch[cite: 3]
+               ├─► Needs Automation? ──► TIER B (Copilot Studio)      ──► Medium Cost / Automated Flows[cite: 2, 3]
+               └─► Heavy/Scanned Data?──► TIER C (Azure AI Foundry)    ──► Higher Cost / Maximum Power[cite: 2, 3]
+    </pre>
 
 </body>
 </html>
