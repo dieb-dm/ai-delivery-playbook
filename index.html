@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Delivery Playbook</title>
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.6; max-width: 800px; margin: 40px auto; padding: 0 20px; color: #333; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.6; max-width: 850px; margin: 40px auto; padding: 0 20px; color: #333; }
         h1 { border-bottom: 2px solid #0066cc; padding-bottom: 10px; color: #0066cc; }
         h2 { color: #004499; margin-top: 40px; border-bottom: 1px solid #ddd; padding-bottom: 5px; scroll-margin-top: 20px; }
         h3 { color: #333; margin-top: 20px; }
@@ -13,12 +13,13 @@
         .understand { background-color: #d4edda; color: #155724; }
         .configure { background-color: #fff3cd; color: #856404; }
         table { width: 100%; border-collapse: collapse; margin: 20px 0; }
-        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
         th { background-color: #f2f2f2; }
-        pre { background: #f4f4f4; padding: 10px; border-left: 3px solid #0066cc; font-family: monospace; overflow-x: auto; white-space: pre-wrap; }
+        pre { background: #f4f4f4; padding: 12px; border-left: 3px solid #0066cc; font-family: monospace; overflow-x: auto; white-space: pre-wrap; font-size: 13px; }
+        blockquote { background: #eef6ff; border-left: 4px solid #0066cc; margin: 15px 0; padding: 10px 15px; font-style: italic; }
         
         /* Table of Contents Styling */
-        .toc { background: #eef6ff; border: 1px solid #b6d4fe; padding: 15px 20px; border-radius: 6px; margin: 25px 0; }
+        .toc { background: #f8f9fa; border: 1px solid #dcdcdc; padding: 15px 20px; border-radius: 6px; margin: 25px 0; }
         .toc h3 { margin-top: 0; color: #004499; }
         .toc ul { margin-bottom: 0; padding-left: 20px; }
         .toc li { margin-bottom: 6px; }
@@ -50,65 +51,229 @@
             <li><a href="#concept-1">Concept 1: Hosted LLM APIs vs. Self-Hosted Open-Source Models</a></li>
             <li><a href="#concept-2">Concept 2: Version-Controlled Documentation (Docs-as-Code)</a></li>
             <li><a href="#concept-3">Concept 3: AI Agent Team Topology & Roles</a></li>
-            <li><a href="#concept-4">Concept 4: Agent Orchestration Frameworks (LangGraph)</a></li>
+            <li><a href="#concept-4">Concept 4: Agent Orchestration Frameworks & Reasoning Loops</a></li>
             <li><a href="#concept-5">Concept 5: The 3-Tier Enterprise AI Architecture</a></li>
             <li><a href="#concept-6">Concept 6: Deep Dive into Tier B Automation & Tier C Data Engines</a></li>
             <li><a href="#concept-7">Concept 7: The 5-Question AI Use Case Triage Matrix</a></li>
         </ul>
     </nav>
 
-    <!-- MISSION 1 -->
+    <!-- CONCEPT 1 -->
     <h2 id="concept-1">Concept 1: Hosted LLM APIs vs. Self-Hosted Open-Source Models</h2>
     <p><strong>Status:</strong> <span class="status understand">🟢 Understand the concept</span></p>
     
     <h3>What is it?</h3>
-    <p>Choosing between renting an AI brain via external API (OpenAI/Gemini) vs. hosting a free, public model blueprint (Llama) on our own cloud infrastructure.</p>
+    <p>Choosing between renting an AI brain via external managed API (e.g., OpenAI, Gemini) vs. hosting a free, public model blueprint (e.g., Llama) on our own cloud infrastructure (Azure/AWS).</p>
 
     <h3>Why care as a DM?</h3>
-    <p>APIs offer rapid time-to-market but carry variable Opex costs and external data privacy risks. Open-Source requires high upfront Capex and cloud expertise but guarantees data security and predictable infrastructure pricing.</p>
+    <p>APIs offer rapid time-to-market with zero infrastructure maintenance, but carry variable Operational Expenditure (OpEx) costs and external data privacy considerations. Open-Source requires high upfront Capital Expenditure (CapEx) and deep cloud expertise, but guarantees data residency and predictable long-term costs.</p>
+
+    <h3>Questions to Ask</h3>
+    <ul>
+        <li>What is our projected user volume, and where is the tipping point where self-hosting becomes cheaper than API tokens?</li>
+        <li>Does the client's compliance policy strictly prohibit sending data to third-party endpoints?</li>
+    </ul>
+
+    <h3>Risks</h3>
+    <ul>
+        <li><strong>API Dependency:</strong> Vulnerability to unexpected third-party service outages or price changes.</li>
+        <li><strong>Open-Source Overhead:</strong> Underestimating the ongoing maintenance costs of dedicated GPU cloud servers.</li>
+    </ul>
+
+    <h3>Simple Analogy</h3>
+    <p><strong>APIs = Uber:</strong> Fast, convenient, and zero maintenance, but expensive for constant heavy usage.<br>
+    <strong>Open-Source = Owning commercial delivery vans:</strong> High upfront purchase cost and requires your own mechanics, but far cheaper for high-volume, predictable operations.</p>
 
 
-    <!-- MISSION 2 -->
+    <!-- CONCEPT 2 -->
     <h2 id="concept-2">Concept 2: Version-Controlled Documentation (Docs-as-Code)</h2>
     <p><strong>Status:</strong> <span class="status configure">🟡 Know how to configure or use it</span></p>
     
     <h3>What is it?</h3>
-    <p>Writing technical and delivery documentation in lightweight formats (like Markdown/HTML) and managing it inside a Git repository alongside the codebase, utilizing automation to publish it live.</p>
+    <p>Writing technical and delivery documentation in lightweight formats (Markdown/HTML) and managing it inside a Git repository directly alongside the codebase, using automated pipelines (GitHub Pages/Actions) to publish it live.</p>
+
+    <h3>Why care as a DM?</h3>
+    <p>It eliminates document fragmentation (e.g., lost Word docs or outdated Confluence pages), creates an immutable audit trail of delivery decisions, and ensures delivery playbooks sit right where the engineering team works.</p>
+
+    <h3>Questions to Ask</h3>
+    <ul>
+        <li>Is our technical architecture documented alongside our codebase, or is it scattered across personal drives?</li>
+        <li>Do our CI/CD pipelines automatically validate and publish documentation updates upon code commits?</li>
+    </ul>
+
+    <h3>Risks</h3>
+    <ul>
+        <li><strong>Deployment Pipeline Failures:</strong> Automated builds can fail due to minor formatting errors or environment deprecations, requiring quick diagnostic checks (distinguishing build blockers from minor warnings).</li>
+    </ul>
+
+    <h3>Simple Analogy</h3>
+    <p><strong>Traditional Docs = Storing paper blueprints in filing cabinets:</strong> Hard to search, easy to misplace, and quickly outdated.<br>
+    <strong>Docs-as-Code = A digital live-syncing dashboard on the factory floor:</strong> Every time an engineer changes a machine part, the user manual updates automatically on the screen.</p>
 
 
-    <!-- MISSION 3 -->
+    <!-- CONCEPT 3 -->
     <h2 id="concept-3">Concept 3: AI Agent Team Topology & Roles</h2>
     <p><strong>Status:</strong> <span class="status understand">🟢 Understand the concept</span></p>
     
     <h3>What is it?</h3>
-    <p>The specialized staffing structure required to scale AI applications beyond basic software development, introducing explicit profiles for cognitive workflows, data engineering (RAG), and non-deterministic testing.</p>
+    <p>The specialized staffing structure required to scale AI applications beyond traditional software development, introducing roles focused on cognitive architecture, data fuel, and non-deterministic testing.</p>
+
+    <h3>Core Profiles</h3>
+    <ul>
+        <li><strong>AI Solution Architect:</strong> Designs the systemic blueprint, enterprise landing zones, and core frameworks.</li>
+        <li><strong>AI Engineer:</strong> Constructs individual agent logic, prompt rules, and tool integrations.</li>
+        <li><strong>Data Engineer:</strong> Prepares, vectors, and securely routes internal enterprise data (RAG).</li>
+        <li><strong>AI QA / Evaluation Engineer:</strong> Builds automated regression testing workflows to monitor agent accuracy.</li>
+    </ul>
+
+    <h3>Why care as a DM?</h3>
+    <p>Staffing an AI project with a generic software engineering mix creates major delivery bottlenecks. You must explicitly source profiles that understand vector indexing and non-deterministic testing.</p>
+
+    <h3>Questions to Ask</h3>
+    <ul>
+        <li>Do we have dedicated Data Engineers to format unstructured client data, or are we expecting AI Engineers to do data prep?</li>
+        <li>Who owns automated regression testing to catch hallucinations when prompts change?</li>
+    </ul>
+
+    <h3>Risks</h3>
+    <ul>
+        <li><strong>The Generic Staffing Trap:</strong> Hiring standard web developers and expecting them to handle complex vector search or Copilot Studio ALM setup without proper domain expertise.</li>
+    </ul>
+
+    <h3>Simple Analogy</h3>
+    <p>Building a standard software app is like constructing a modern house (carpenters, electricians, plumbers). Building an AI Agent system is like running a high-end restaurant: you need specialized chefs (AI Engineers), quality suppliers (Data Engineers), and a head food critic (Evaluation Engineer) to test dishes continuously.</p>
 
 
-    <!-- MISSION 4 -->
-    <h2 id="concept-4">Concept 4: Agent Orchestration Frameworks (LangGraph)</h2>
+    <!-- CONCEPT 4 -->
+    <h2 id="concept-4">Concept 4: Agent Orchestration Frameworks & Reasoning Loops</h2>
     <p><strong>Status:</strong> <span class="status understand">🟢 Understand the concept</span></p>
     
     <h3>What is it?</h3>
-    <p>A software framework providing a standardized structure for mapping out an agent's complex multi-step reasoning processes, actions, evaluations, and logic loops.</p>
+    <p>A software framework (e.g., LangGraph) that provides a standardized structure for mapping out an agent's multi-step reasoning processes, actions, evaluations, and logic loops.</p>
+
+    <h3>The Core Components</h3>
+    <ul>
+        <li><strong>Nodes (The Actions):</strong> The individual tasks the AI performs (e.g., "Fetch transaction history").</li>
+        <li><strong>Edges (The Logic/Routing):</strong> The business rules connecting steps (e.g., "If amount > £10k, route to compliance").</li>
+        <li><strong>State (The Memory):</strong> A shared notepad tracking context across the multi-step execution.</li>
+    </ul>
+
+    <h3>Why care as a DM?</h3>
+    <p>Without an orchestration framework, developers write messy, custom "if/else" code. While this might work for 1 or 2 simple tasks, it creates massive technical debt and completely stalls a project trying to scale to 20+ use cases.</p>
+
+    <h3>Questions to Ask</h3>
+    <ul>
+        <li>Have the Product Managers provided clear flowcharts of the business rules, or are developers guessing the routing logic?</li>
+        <li>Is our AI Architect proposing an open-source framework (LangGraph) or a low-code platform (Copilot Studio)?</li>
+    </ul>
+
+    <h3>Risks</h3>
+    <ul>
+        <li><strong>Infinite Loops & Scope Creep:</strong> Unclear edge logic causes agents to re-run steps endlessly, spiking computing costs and delaying sprint deadlines.</li>
+    </ul>
+
+    <h3>Simple Analogy</h3>
+    <p>Building 20 custom AI use cases without a framework is like building 20 custom Lego sets without instruction manuals. Using an orchestration framework provides every developer with the exact same base grid plate—the designs can be unique, but the foundation is uniform and predictable.</p>
+
+    <h3>The Reasoning Loop Diagram</h3>
+    <pre>
+┌────────────────────────────────────────────────────────┐
+│                   State (Memory Log)                   │
+└───────────────────────────┬────────────────────────────┘
+                            │
+                            ▼
+┌──────────────────┐   ┌─────────┐   ┌──────────────────┐
+│  Node 1: Action  ├──►│ Edge 1  ├──►│  Node 2: Action  │
+│  Read GRC Export │   │ Check?  │   │  Flag Violation  │
+└──────────────────┘   └─────────┘   └──────────────────┘
+    </pre>
 
 
-    <!-- MISSION 5 -->
+    <!-- CONCEPT 5 -->
     <h2 id="concept-5">Concept 5: The 3-Tier Enterprise AI Architecture</h2>
     <p><strong>Status:</strong> <span class="status understand">🟢 Understand the concept</span></p>
     
     <h3>What is it?</h3>
     <p>A structural classification framework inside a Microsoft/Azure corporate environment that categorizes AI solutions into three tiers based on process complexity, data scale, and deployment governance.</p>
+    <ul>
+        <li><strong>Tier A (Agent Builder):</strong> Fast, built-in, low-friction bots running natively in M365 Copilot, grounded on clean text files in SharePoint.</li>
+        <li><strong>Tier B (Copilot Studio):</strong> Fully managed workflow applications using Power Automate, proactive alerts, multi-step routing, and strict environment pipelines (ALM).</li>
+        <li><strong>Tier C (Azure AI Foundry):</strong> High-capacity data engines leveraging Azure OpenAI, AI Search, and Document Intelligence (OCR) to ingest heavy datasets or complex layouts.</li>
+    </ul>
+
+    <h3>Why care as a DM?</h3>
+    <p>It directly governs your staffing requirements, software licensing, and sprint velocity. Tier A requires low effort, Tier B requires Power Platform/ALM engineering capabilities, and Tier C demands data engineers and larger cloud budgets.</p>
+
+    <h3>Questions to Ask</h3>
+    <ul>
+        <li>Of our pipeline use cases, how many pass the Tier C filter (requiring deep table parsing or files >300 pages) versus standard text search?</li>
+        <li>Have we requested the Copilot Studio development environments from tenant admins, or are we gated by platform approvals?</li>
+    </ul>
+
+    <h3>Risks</h3>
+    <ul>
+        <li><strong>The Platform Mismatch:</strong> Forcing a complex, table-heavy use case into Tier A because it's "free," leading to hallucinated data and ruined user trust.</li>
+    </ul>
+
+    <h3>Simple Analogy</h3>
+    <p><strong>Tier A = Breakroom Bulletin Board:</strong> Free, immediate, great for pinning reference docs, but cannot route mail or send alerts.<br>
+    <strong>Tier B = Automated Mail Room:</strong> Sorts incoming mail, tracks signatures, and automatically sends reminders.<br>
+    <strong>Tier C = Industrial Cargo Shipping Hub:</strong> Operates forklifts, parses complex customs manifests, and moves massive freight.</p>
+
+    <h3>Architecture Overview Diagram</h3>
+    <pre>
+[Incoming Use Case Pipeline]
+               │
+               ▼ Passing through the Architecture Filter...
+               ├─► Clean Text Only?  ──► TIER A (M365 Agent Builder)  ──► Low Cost / Fast Launch
+               ├─► Needs Automation? ──► TIER B (Copilot Studio)      ──► Medium Cost / Automated Flows
+               └─► Heavy/Scanned Data?──► TIER C (Azure AI Foundry)    ──► Higher Cost / Maximum Power
+    </pre>
 
 
-    <!-- MISSION 6 -->
+    <!-- CONCEPT 6 -->
     <h2 id="concept-6">Concept 6: Deep Dive into Tier B Automation & Tier C Data Engines</h2>
     <p><strong>Status:</strong> <span class="status understand">🟢 Understand the concept</span></p>
     
     <h3>What is it?</h3>
-    <p>The underlying mechanics that allow an AI system to handle automatic cross-department workflows (Tier B: Copilot Studio + Power Automate) and heavy unrefined data (Tier C: Azure AI Foundry + Document Intelligence/OCR).</p>
+    <p>The specific underlying technical mechanics that allow an AI system to handle automatic cross-department business workflows (Tier B) and unrefined, complex data (Tier C).</p>
+    <ul>
+        <li><strong>Power Automate (Tier B):</strong> Programmatic triggers that replace manual human steps. Auto-detects dropped files, triggers the AI agent, executes logical checks, and posts output to Teams.</li>
+        <li><strong>ALM Pipelines (Tier B):</strong> Application Lifecycle Management pipelines separating environments. Moves code safely from Developer Sandboxes ➔ Test/UAT ➔ Production.</li>
+        <li><strong>Document Intelligence / OCR (Tier C):</strong> Optical Character Recognition engines used to parse grids, layouts, complex tables, and text structures from scanned PDFs or dense spreadsheets.</li>
+        <li><strong>Azure AI Search (Tier C):</strong> High-scale vector data systems that chunk large document archives into searchable concepts, enabling instant pinpoint retrieval.</li>
+    </ul>
+
+    <h3>Why care as a DM?</h3>
+    <p>Tier B requires planning for environment access dependencies (Dev/Test/Prod). Tier C shifts estimations from prompt tuning to data engineering setups, requiring dedicated sprint allocations.</p>
+
+    <h3>Questions to Ask</h3>
+    <ul>
+        <li>Are our Tier B deployment pipelines (ALM) managed via Azure DevOps, or are developers manually exporting solutions?</li>
+        <li>For table-heavy use cases, are we utilizing Azure Document Intelligence to isolate grids, or passing unstructured text directly to the model?</li>
+    </ul>
+
+    <h3>Risks</h3>
+    <ul>
+        <li><strong>Tenant Admin Bottlenecks:</strong> Delays in provisioning Azure Key Vaults, security groups, or service principals can completely block developers.</li>
+        <li><strong>Ingestion Cost Shock:</strong> Processing thousands of pages through OCR engines incurs direct, consumption-based cloud costs.</li>
+    </ul>
+
+    <h3>Simple Analogy</h3>
+    <p><strong>Tier B (Automation & ALM) = Factory Assembly Conveyors:</strong> Replaces manual material carrying with automated sensors. ALM ensures new equipment undergoes stress testing in a replica bay (UAT) before going onto the active factory floor.<br>
+    <strong>Tier C (Azure Foundry & OCR) = Mineral Extraction Mill:</strong> Raw, dense mineral ore (scanned PDFs and 300-page booklets) cannot enter processing directly; it requires a dedicated extraction mill (Document Intelligence) to refine and tag contents first.</p>
+
+    <h3>Technical Workflow Diagram</h3>
+    <pre>
+TIER B WORKFLOW (Process Automation)
+[File Dropped in SharePoint] ──► (Power Automate Trigger) ──► [Copilot Agent Runs Audit] ──► [Teams Alert Posted]
+
+TIER C DATA PIPELINE (Heavy Data Ingestion)
+[Scanned PDF / Heavy RFx] ──► [Document Intelligence (OCR)] ──► [Azure AI Search] ──► [Azure OpenAI]
+    </pre>
 
 
-    <!-- MISSION 7 -->
+    <!-- CONCEPT 7 -->
     <h2 id="concept-7">Concept 7: The 5-Question AI Use Case Triage Matrix</h2>
     <p><strong>Status:</strong> <span class="status configure">🟡 Know how to configure or use it</span></p>
     
@@ -161,6 +326,17 @@
 
     <h3>Why care as a DM?</h3>
     <p>It stops scope creep before it starts. It prevents engineers from over-architecting simple text queries and stops business stakeholders from expecting complex table-parsing systems overnight.</p>
+
+    <h3>Questions to Ask</h3>
+    <ul>
+        <li>Have we run all 20 client use cases through this filter before committing to delivery dates?</li>
+        <li>Which stakeholder use cases fall into Tier A for quick wins, and which require Tier C infrastructure?</li>
+    </ul>
+
+    <h3>Risks</h3>
+    <ul>
+        <li><strong>Over-Promising Tier A Simplicity:</strong> Allowing clients to assume complex PDF table parsing can be delivered instantly in basic M365 Copilot without Tier C tooling.</li>
+    </ul>
 
     <h3>Simple Analogy</h3>
     <p><strong>Tier A = ER Minor Scrape:</strong> Quick Band-Aid, out the door in 10 mins.<br>
