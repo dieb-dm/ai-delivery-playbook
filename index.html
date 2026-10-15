@@ -55,6 +55,7 @@
             <li><a href="#concept-5">Concept 5: The 3-Tier Enterprise AI Architecture</a></li>
             <li><a href="#concept-6">Concept 6: Deep Dive into Tier B Automation & Tier C Data Engines</a></li>
             <li><a href="#concept-7">Concept 7: The 5-Question AI Use Case Triage Matrix</a></li>
+            <li><a href="#concept-8">Concept 8: Retrieval-Augmented Generation (RAG)</a></li>
         </ul>
     </nav>
 
@@ -103,7 +104,7 @@
 
     <h3>Risks</h3>
     <ul>
-        <li><strong>Deployment Pipeline Failures:</strong> Automated builds can fail due to minor formatting errors or environment deprecations, requiring quick diagnostic checks (distinguishing build blockers from minor warnings).</li>
+        <li><strong>Deployment Pipeline Failures:</strong> Automated builds can fail due to minor formatting errors or environment deprecations, requiring quick diagnostic checks.</li>
     </ul>
 
     <h3>Simple Analogy</h3>
@@ -342,6 +343,47 @@ TIER C DATA PIPELINE (Heavy Data Ingestion)
     <p><strong>Tier A = ER Minor Scrape:</strong> Quick Band-Aid, out the door in 10 mins.<br>
     <strong>Tier B = Broken Arm:</strong> Standard casting procedure with scheduled follow-ups (Power Automate).<br>
     <strong>Tier C = Major Surgery:</strong> Specialized surgeons (Data Engineers) and heavy operating rooms (Document Intelligence/OCR).</p>
+
+
+    <!-- CONCEPT 8 (NEW) -->
+    <h2 id="concept-8">Concept 8: Retrieval-Augmented Generation (RAG)</h2>
+    <p><strong>Status:</strong> <span class="status understand">🟢 Understand the concept</span></p>
+    
+    <h3>What is it?</h3>
+    <p>An architectural framework that forces a Large Language Model (LLM) to look up specific, private facts from internal data stores before generating an answer, preventing hallucinations and grounding responses in real company data.</p>
+
+    <h3>The 3 Execution Steps</h3>
+    <ul>
+        <li><strong>1. Retrieval:</strong> When a user asks a question, the system searches internal storage (e.g., SharePoint or a vector database) to pull relevant document sections.</li>
+        <li><strong>2. Augmented:</strong> The system attaches those retrieved document excerpts directly into the background prompt sent to the LLM.</li>
+        <li><strong>3. Generation:</strong> The LLM reads the retrieved text and generates a clear, concise response grounded strictly in the source documents.</li>
+    </ul>
+
+    <h3>Why care as a DM?</h3>
+    <p>RAG is the single most common architecture in Enterprise AI. It allows you to build accurate, secure knowledge assistants without spending millions to train or fine-tune custom LLM models from scratch.</p>
+
+    <h3>Questions to Ask</h3>
+    <ul>
+        <li>Are our source documents formatted cleanly so the vector search engine can index them accurately?</li>
+        <li>Does our RAG implementation enforce document-level access permissions (RBAC) so users only retrieve files they are authorized to view?</li>
+    </ul>
+
+    <h3>Risks</h3>
+    <ul>
+        <li><strong>Garbage In, Garbage Out:</strong> If the underlying documents are outdated or poorly formatted, the retrieved context will be wrong, leading to inaccurate AI answers.</li>
+    </ul>
+
+    <h3>Simple Analogy</h3>
+    <p><strong>Standard LLM = Closed-Book Exam:</strong> The student relies purely on memory and might guess or fabricate answers if unsure.<br>
+    <strong>RAG = Open-Book Exam:</strong> The system opens the textbook to the exact page, reads the verified paragraph, and writes the answer while citing the page number.</p>
+
+    <h3>RAG Workflow Diagram</h3>
+    <pre>
+[User Query] ──► [Search Internal Vector DB / SharePoint] ──► [Retrieve Top Relevant Passages]
+                                                                      │
+                                                                      ▼
+[Final Grounded Answer + Source Citations] ◄── [LLM Generates Answer] ◄── [Attach Passages to Prompt]
+    </pre>
 
 </body>
 </html>
